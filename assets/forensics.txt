@@ -1,4 +1,0 @@
-2025-05-30 10:00:01 User:admin Login successful
-2025-05-30 10:01:15 User:guest Access denied
-2025-05-30 10:02:30 Suspicious: CTF{L0g5_R3v34l_53cr3t5}
-2025-05-30 10:03:45 User:admin Logout
