@@ -28,10 +28,16 @@ body {
   z-index: 1000;
 }
 
-.text-green-500 {
-  color: #10b981;
+.text-green-text {
+  color: green;
 }
 
-.text-red-500 {
-  color: #ef4444;
+.text-red-text {
+  color: red;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 100%;
 }
