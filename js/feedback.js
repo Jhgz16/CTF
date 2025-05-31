@@ -18,12 +18,12 @@ function showHint(hint) {
     console.error('Hint modal elements not found');
     return;
   }
-  hintContent.textContent = hint || 'No hint available';
+  hintContent.textContent = hint || 'No more hints available';
   hintModal.classList.remove('hidden');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const closeFeedbackModal = document.getElementById('closeFeedbackModalButton');
+  const closeFeedbackModal = document.getElementById('closeFeedbackModal');
   if (closeFeedbackModal) {
     closeFeedbackModal.addEventListener('click', () => {
       document.getElementById('feedbackModal').classList.add('hidden');
