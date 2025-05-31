@@ -1,12 +1,43 @@
-const solvedChallenges = new Set();
-
-function checkFlag(challengeId, submittedFlag) {
-  const challenge = challenges.find(c => c.id === challengeId);
-  if (!challenge) return { success: false, message: "Challenge not found!" };
-  if (solvedChallenges.has(challengeId)) return { success: false, message: "This challenge is already solved!" };
-  if (submittedFlag === challenge.flag) {
-    solvedChallenges.add(challengeId);
-    return { success: true, message: "Correct flag! Challenge solved!" };
+function showFeedback(message, isSuccess) {
+  const feedbackContent = document.getElementById('feedbackContent');
+  const feedbackModal = document.getElementById('feedbackModal');
+  if (!feedbackModal || !feedbackContent) {
+    console.error('Feedback modal elements not found');
+    return;
   }
-  return { success: false, message: "Incorrect flag. Try again!" };
+  feedbackContent.textContent = message;
+  feedbackContent.classList.toggle('text-green-400', isSuccess);
+  feedbackContent.classList.toggle('text-red-500', !isSuccess);
+  feedbackModal.classList.remove('hidden');
 }
+
+function showHint(hint) {
+  const hintContent = document.getElementById('hintContent');
+  const hintModal = document.getElementById('hintModal');
+  if (!hintModal || !hintContent) {
+    console.error('Hint modal elements not found');
+    return;
+  }
+  hintContent.textContent = hint || 'No hint available';
+  hintModal.classList.remove('hidden');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const closeFeedbackModal = document.getElementById('closeFeedbackModalButton');
+  if (closeFeedbackModal) {
+    closeFeedbackModal.addEventListener('click', () => {
+      document.getElementById('feedbackModal').classList.add('hidden');
+    });
+  } else {
+    console.error('Close feedback modal button not found');
+  }
+
+  const closeHintModal = document.getElementById('closeHintModal');
+  if (closeHintModal) {
+    closeHintModal.addEventListener('click', () => {
+      document.getElementById('hintModal').classList.add('hidden');
+    });
+  } else {
+    console.error('Close hint modal button not found');
+  }
+});
