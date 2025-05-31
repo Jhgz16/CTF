@@ -19,7 +19,7 @@ body {
 .flag-input:disabled,
 .submit-button:disabled,
 .hint-button:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
@@ -28,12 +28,16 @@ body {
   z-index: 1000;
 }
 
-.text-green-text {
-  color: green;
+.hidden {
+  display: none;
 }
 
-.text-red-text {
-  color: red;
+.text-green-400 {
+  color: #10b981;
+}
+
+.text-red-500 {
+  color: #ef4444;
 }
 
 pre {
