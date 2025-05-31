@@ -1,6 +1,9 @@
 function renderChallenges() {
   const challengesDiv = document.getElementById('challenges');
-  if (!challengesDiv) return;
+  if (!challengesDiv) {
+    console.error('Challenges div not found');
+    return;
+  }
   const solvedChallenges = JSON.parse(localStorage.getItem('solvedChallenges') || '{}');
   challengesDiv.innerHTML = '';
   challenges.forEach(challenge => {
@@ -12,37 +15,36 @@ function renderChallenges() {
       <p class="mb-2"><strong>Category:</strong> ${challenge.category}</p>
       <p class="mb-2"><strong>Difficulty:</strong> ${challenge.difficulty}</p>
       <p class="mb-4">${challenge.description}</p>
-      ${challenge.attachment ? `<p><a href="${challenge.attachment}" class="text-blue-600 hover:underline" download>Download attachment</a></p>` : ''}
+      ${challenge.attachment ? `<p><a href="${encodeURI(challenge.attachment)}" class="text-blue-600 hover:underline" download>Download attachment</a></p>` : ''}
       <div class="mt-4">
-        <input type="text" id="flag-${challenge.id}" placeholder="Enter flag" class="flag-input w-full p-3 bg-gray-700 text-white rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" ${isSolved ? 'disabled' : ''}>
-        <button onclick="submitFlag(${challenge.id})" class="submit-button mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-200" ${isSolved ? 'disabled' : ''}>Submit</button>
-        <button onclick="showHint(${challenge.id})" class="hint-button mt-2 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md transition duration-200">Show Hint</button>
+        <input type="text" id="flag-${challenge.id}" placeholder="Enter flag" class="flag-input w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" ${isSolved ? 'disabled' : ''}>
+        <button onclick="submitFlag(${challenge.id})" class="submit-button mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-200" ${isSolved ? 'disabled' : ''}>Submit</button>
+        <button onclick="showHint('${challenge.hint}')" class="hint-button mt-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition duration-200">Show Hint</button>
       </div>
     `;
     challengesDiv.appendChild(card);
   });
 }
 
-function showHint(challengeId) {
-  const challenge = challenges.find(ch => ch.id === challengeId);
-  if (challenge) {
-    showHint(challenge.hint);
-  }
-}
-
 function submitFlag(challengeId) {
   const inputElement = document.getElementById(`flag-${challengeId}`);
-  if (!inputElement) return;
+  if (!inputElement) {
+    console.error(`No input element found for challenge ${challengeId}`);
+    return;
+  }
   const input = inputElement.value.trim().replace(/[<>"]/g, '');
   const challenge = challenges.find(c => c.id === challengeId);
-  if (!challenge) return;
+  if (!challenge) {
+    console.error(`No challenge found with id ${challengeId}`);
+    return;
+  }
   const solvedChallenges = JSON.parse(localStorage.getItem('solvedChallenges') || '{}');
-  if (solvedChallenges[challengeId]) {
+  if (solvedChallenges[challenge.id]) {
     showFeedback('Challenge already solved!', false);
     return;
   }
   if (input === challenge.flag) {
-    solvedChallenges[challengeId] = true;
+    solvedChallenges[challenge.id] = true;
     localStorage.setItem('solvedChallenges', JSON.stringify(solvedChallenges));
     showFeedback('Correct flag! Challenge solved!', true);
     renderChallenges();
@@ -53,7 +55,7 @@ function submitFlag(challengeId) {
 
 async function fetchNetworkFlag() {
   try {
-    const response = await fetch('/api/flag', { headers: { 'Accept': 'application/json' } });
+    const response = await fetch('/api/flag', { headers: { 'Accept': 'text/plain' } });
     const flag = 'FLAG{N3TW0rk}';
     console.log('X-Flag:', flag);
   } catch (e) {
