@@ -17,7 +17,7 @@ function renderChallenges() {
       <p class="mb-2"><strong>Category:</strong> ${challenge.category}</p>
       <p class="mb-2"><strong>Difficulty:</strong> ${challenge.difficulty}</p>
       <p class="mb-4">${challenge.description}</p>
-      ${challenge.attachment ? `<p><a href="${encodeURI(challenge.attachment)}" class="text-blue-600 hover:underline" download>Download attachment</a></a>` : ''}
+      ${challenge.attachment ? `<p><a href="${encodeURI(challenge.attachment)}" class="text-blue-600 hover:underline" download>Download attachment</a></p>` : ''}
       <div class="mt-4">
         <input type="text" id="flag-${challenge.id}" placeholder="Enter flag" class="flag-input w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" ${isSolved ? 'disabled' : ''}>
         <button onclick="submitFlag(${challenge.id})" class="submit-button mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition duration-200" ${isSolved ? 'disabled' : ''}>Submit</button>
@@ -37,10 +37,11 @@ function showNextHint(challengeId) {
     console.error(`No challenge found for id ${challengeId}`);
     return;
   }
-  const currentHintIndex = hintProgress[challengeId];
+  const currentHintIndex = hintProgress[challengeId] || 0;
   if (currentHintIndex < challenge.hints.length) {
     showHint(challenge.hints[currentHintIndex]);
-    hintProgress[challengeId] = currentHintIndex +  } else {
+    hintProgress[challengeId] = currentHintIndex + 1;
+  } else {
     showHint('No more hints available.');
   }
 }
@@ -75,7 +76,7 @@ function submitFlag(challengeId) {
 async function fetchNetworkFlag() {
   try {
     const response = await fetch('/api/flag', { headers: { 'Accept': 'text/plain' } });
-    const flag = 'FLAG{N64W0rk}';
+    const flag = 'FLAG{N3TW0rk}';
     console.log('X-Flag:', flag);
   } catch (e) {
     console.error('Fetch error:', e);
@@ -86,4 +87,3 @@ document.addEventListener('DOMContentLoaded', () => {
   renderChallenges();
   fetchNetworkFlag();
 });
-</script>
