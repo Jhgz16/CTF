@@ -45,3 +45,13 @@ pre {
   word-break: break-word;
   max-width: 100%;
 }
+
+#hintContent ul {
+  list-style-type: disc;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+#hintContent li {
+  margin-bottom: 0.5rem;
+}
