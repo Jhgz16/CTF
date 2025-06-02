@@ -47,32 +47,35 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="bg-gray-900 text-white font-sans">
-  <!-- FLAG{S0urc3_C0d3_1s_F5} -->
+  <!-- FLAG{S0urC3_C0d3_1s_F5} -->
 
-  <div class="container mx-auto p-4">
-    <h1 class="text-4xl font-bold text-center mb-8 text-blue-400">Ethical Hacking CTF Competition</h1>
-    <p class="text-center mb-4">Simulated environment for authorized testing only. Do not attempt on unauthorized systems.</p>
-    <div id="challenges" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  <div class="container mx-auto p-8">
+    <header class="mb-8 text-center">
+      <h1 class="text-4xl font-bold text-blue-400 mb-2">Ethical Hacking CTF Competition</h1>
+      <p class="text-gray-400 mb-4">Simulated environment for authorized testing.</p>
+      <div id="scoreDisplay" class="text-2xl font-semibold text-blue-600">Score: 0</div>
+    </header>
+    <div id="challenge-categories"></div>
   </div>
 
-  <div id="hintModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-100">
-    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full">
-      <h2 class="text-2xl font-bold mb-4 text-blue-400">Hint</h2>
-      <p id="hintContent" class="mb-4"></p>
-      <button id="closeHintModal" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Close</button>
+  <div id="hintModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-gray-800 p-6 rounded-lg max-w-md">
+      <h2 class="text-xl font-bold mb-4 text-blue-400">Hint</h2>
+      <div id="hintContent" class="mb-8 text-gray-300"></div>
+      <button id="closeHintModal" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Close</button>
     </div>
   </div>
 
-  <div id="feedbackModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-100">
-    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full">
-      <h2 class="text-2xl font-bold mb-4 text-blue-400">Feedback</h2>
-      <p id="feedbackContent" class="mb-4"></p>
-      <button id="closeFeedbackModal" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Close</button>
+  <div id="feedbackModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-gray-800 p-6 rounded-lg max-w-md">
+      <h2 class="text-xl font-bold mb-4 text-blue-400">Feedback</h2>
+      <p id="feedbackContent" class="mb-8 text-gray-300"></p>
+      <button id="closeFeedbackModal" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Close</button>
     </div>
   </div>
 
   <script>
-    document.cookie = "flag=FLAG{C00k13_Yummy};path=/;SameSite=Strict";
+    document.cookie = "flag=FLAG{C00k13_Y4mmy};path=/;SameSite=Strict";
     try {
       undefinedFunction();
     } catch (e) {
