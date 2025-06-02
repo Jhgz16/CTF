@@ -41,7 +41,7 @@ const challenges = [
     "Consider how paths could be manipulated.",
     "Verify if sensitive paths are exposed."
   ]},
-  { id: 7, title: "JWT Hijack", category: "Web", difficulty: "Amateur", description: "Decode the JWT token in the config file. Ethical JWT analysis.", flag: "FLAG{JWT_H1G4CK}", attachment: "assets/session_hijack.conf", hints: [
+  { id: 7, title: "JWT Hijack", category: "Web", difficulty: "Amateur", description: "Decode the JWT token in the config file. Ethical JWT analysis.", flag: "FLAG{H1J4CK_JwT}", attachment: "assets/session_hijack.conf", hints: [
     "Examine the token for encoded data.",
     "Identify the format of the token string.",
     "Consider decoding methods for tokens.",
@@ -123,20 +123,20 @@ const challenges = [
     "Look for base64 strings in variables.",
     "Consider decoding the identified string.",
     "Check the decoded content for structure.",
-    "Focus on the variable assignments."
+    "Focus on variable assignments."
   ]},
   { id: 19, title: "Hidden in Plain Sight", category: "Steganography", difficulty: "Beginner", description: "Extract the flag from the BMP.", flag: "FLAG{H1DD3N}", attachment: "assets/stego_image.bmp", hints: [
     "Use steganography tools with a common password.",
-    "Try default passwords like 'secret'.",
+    "Try default passwords like 'secret123'.",
     "Check for embedded text in the image.",
     "Consider popular stego tools.",
     "Verify the extracted data format."
   ]},
   { id: 20, title: "Stego Wave", category: "Steganography", difficulty: "Novice", description: "Extract flag from WAV file.", flag: "FLAG{W4V3}", attachment: "assets/stego_wav.wav", hints: [
     "Analyze the audio file with stego tools or audio editors.",
-    "Look for embedded data in the WAV.",
-    "Try common stego passwords.",
-    "Check for text hidden in the audio.",
+    "Look for embedded data in WAV.",
+    "Try common passwords for extraction.",
+    "Check for text hidden in audio data.",
     "Consider audio analysis tools."
   ]},
   { id: 21, title: "Image Layers", category: "Steganography", difficulty: "Beginner", description: "Decode hidden layers in BMP.", flag: "FLAG{L4Y3R}", attachment: "assets/stego_image_layers.bmp", hints: [
@@ -147,20 +147,20 @@ const challenges = [
     "Verify the extracted data structure."
   ]},
   { id: 22, title: "Stego Sound Puzzle", category: "Steganography", difficulty: "Amateur", description: "Extract base64 flag from WAV.", flag: "FLAG{5T3G0}", attachment: "assets/stego.wav", hints: [
-    "Extract data with stego tools and decode it.",
-    "Look for base64 data in the WAV.",
+    "Extract data with stego tools and data.",
+    "Look for base64 in data in WAV.",
     "Try common passwords for extraction.",
-    "Check the decoded text for flag format.",
+    "Check the decoded text format.",
     "Consider audio stego techniques."
   ]},
-  { id: 23, title: "Hex Decoder", category: "Forensics", difficulty: "Beginner", description: "Decode hex flag in server log.", flag: "FLAG{H3X}", attachment: "assets/hex_log.txt", hints: [
+  { id: 23, title: "Hex Decoder", category: "Forensics", difficulty: "Beginner", description: "Decode hex flag in server log.", flag: "FLAG{H3XAC0D3R}", attachment: "assets/hex_log.txt", hints: [
     "Convert hexadecimal data to readable format.",
     "Look for hex strings in the log.",
     "Consider ASCII conversion of hex.",
     "Check for structured hex patterns.",
     "Verify the decoded text format."
   ]},
-  { id: 24, title: "Caesar’s Secret", category: "Cryptography", difficulty: "Beginner", description: "Decrypt the Caesar cipher to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>ciphertext=UXYZTKAF</pre>", flag: "FLAG{C4S3R}", attachment: null, hints: [
+  { id: 24, title: "Caesar’s Secret", category: "Cryptography", difficulty: "Beginner", description: "Decrypt the Caesar cipher to find the flag in FLAG{...} format.<br><br><br><pre class='bg-gray-700 p-2 rounded'>ciphertext=UXYZTKAF</pre>", flag: "FLAG{CE4S3R}", attachment: null, hints: [
     "Apply a Caesar cipher decryption with a shift.",
     "Try small shift values like 1-5.",
     "Look for meaningful text after shifting.",
@@ -174,63 +174,63 @@ const challenges = [
     "Consider Vigenère decryption tools.",
     "Verify the decrypted text structure."
   ]},
-  { id: 26, title: "Base64 Riddle", category: "Web", difficulty: "Beginner", description: "Decode base64 to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>data=RkxBR3tFNH0=</pre>", flag: "FLAG{E4}", attachment: null, hints: [
+  { id: 26, title: "Base64 Riddle", category: "Web", difficulty: "Beginner", description: "Decode base64 to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>data=RkxBR3tFNH0=</pre>", flag: base64_pre>", flag: "FLAG{B4S3_X64}", attachment: ","data=RkxBR3tFNH0=</pre>}, attachment: null, hints: [
     "Look for base64 strings in the configuration.",
     "Identify encoded data in the text.",
     "Consider decoding tools for base64.",
     "Check if the decoded text is structured.",
     "Ensure the output matches flag format."
-  ]},
-  { id: 27, title: "Script Deobfuscation", category: "Web", difficulty: "Amateur", description: "Deobfuscate JavaScript for base64 flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>var data = \"RkxBR3tEM18wYmZ1c2M0dDN9\";function decodeFlag() { return atob(data); }</pre>", flag: "FLAG{D3_0bfuscate}", attachment: null, hints: [
+  ],
+  { id: 27, title: "Script Deobfuscation", category: "Web", difficulty: "Amateur", description: "Deobfuscate JavaScript for base64 flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>var data = \"RkxBR3tEM3D_0YmZ1c2N4dDN0fQ==\";function decodeFlag() { return atob(data); };</pre>", flag: "FLAG{D3_0bfuscate}", data = \"RkxBR3tEM18D_0YmY1c2N4NDN0fQ==\", flag: "decodeFlag() { return atob(data)}", flag: "FLAG{D3_0bfuscate}", attachment: none, hints: [
     "Simplify the JavaScript code and decode encoded data.",
-    "Look for encoded strings in variables.",
+    "Look for encoded strings in data data.",
     "Consider decoding base64 data.",
     "Check the function’s return value.",
     "Verify the decoded text format."
   ]},
-  { id: 28, title: "Console Log Leak", category: "Web", difficulty: "Novice", description: "Script leaks flag in console.", flag: "FLAG{C0NS0L3}", attachment: null, hints: [
+  { id: 28, title: "Console Log Leak", category: "Web", difficulty: "Novice", description: "Script leaks flag in console.", flag: "FLAG{C0NS0L3}", attachment: none, hints: [
     "Check console logs in developer tools.",
-    "Open the Console tab in DevTools.",
+    "Open the Console tab in developer tools.",
     "Look for error or log messages.",
     "Check for specific error outputs.",
     "Focus on script-related logs."
   ]},
-  { id: 29, title: "Network Leak", category: "Web", difficulty: "Professional", description: "Inspect network headers in DevTools to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>X-Flag: FLAG{N3TW0rk}</pre>", flag: "FLAG{N3TW0rk}", attachment: null, hints: [
+  { id: 29, title: "Network Leak", category: "Web", difficulty: "Professional", description: "Inspect network headers in DevTools to find the flag in FLAG{...} format.<br><br><code>X-Flag: FLAG{N3TW}</code>", flag: "FLAG{N3TW0rk}", attachment: None, hints: [
     "Inspect network headers in developer tools.",
     "Open the Network tab in DevTools.",
     "Look for custom headers in responses.",
     "Check for flag-related headers.",
     "Focus on specific request types."
   ]},
-  { id: 30, title: "Morse Code", category: "Cryptography", difficulty: "Beginner", description: "Decode Morse code to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>CODE: ..-. .-.. .- --. / -- --- .-..- ... -</pre>", flag: "FLAG{Morse}", attachment: null, hints: [
+  { id: 30, title: "Morse Code", category: "Cryptography", difficulty: "Beginner", description: "Decode Morse code to find the flag in FLAG{...} format.<br><pre><code>CODE: FL4G / M0X3</code></pre>", flag: "FLAG{Morse}", attachment: None, hints: [
     "Use a Morse code decoder tool.",
     "Identify Morse code patterns in the text.",
-    "Check for standard Morse characters.",
-    "Consider spaces or slashes as separators.",
-    "Verify the decoded text format."
+    - Check for standard Morse code characters.",
+    - Look for spaces or slashes as separators.",
+    - Verify the decoded text format."
   ]},
-  { id: 31, title: "Code Signal", category: "Cryptography", difficulty: "Beginner", description: "Extract Morse code flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>CODE: ... .-.. .-.. / -- -- --- .-.. --- -</pre>", flag: "FLAG{S1GN4L}", attachment: null, hints: [
+  { id: 31, title: "Code Signal", category: "Cryptography", difficulty: "Beginner", description:摩尔斯 code flags in FLAG{...} format.<br><pre><code>CODE: SLL / MM0LT</code></pre>", flag: "FLAG{S1GN4L}", attachment: None, hints: [
     "Decode the Morse code in the log.",
-    "Look for Morse sequences in the text.",
-    "Use a Morse code chart or tool.",
-    "Check for correct character mapping.",
-    "Ensure the result fits flag format."
+    "Check for Morse code sequences in the text.",
+    - Use a Morse code chart or tool.",
+    - "Check for correct character mappings.",
+    - Ensure the result fits the format."
   ]},
-  { id: 32, title: "Social Media", category: "OSINT", difficulty: "Novice", description: "Analyze social media profile for flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>bio=S0C14L</pre>", flag: "FLAG{S0C14L}", attachment: null, hints: [
+  { id: 32, title: "Social Media", category: "OSINT", difficulty: "Beginner", description: "Analyze social media profile for flag in FLAG{...} format.<br>{bio}<br>", flag: "FLAG{S0C14L}", attachment: None}, hints: [
     "Examine profile details for hidden data.",
     "Look for text in the bio field.",
-    "Check for encoded or direct text.",
-    "Consider social media profile formats.",
-    "Verify the bio content structure."
+    - Check for encoded or direct text.",
+    - Consider social media data formats.",
+    - Verify the bio content structure."
   ]},
-  { id: 33, title: "Geo Trace", category: "OSINT", difficulty: "Novice", description: "Extract flag from geo data in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>lat=40.7128,lon=-74.0060,flag=G0L0C4T0R</pre>", flag: "FLAG{G0L0C4T0R}", attachment: null, hints: [
+  { id: 33, title: "Geo Trace", category: "OSINT", difficulty: "Beginner", description: "Extract flag from geo data in FLAG{...} format.<br><br><i>lat=40.7128,lon=-74.0060,flag</i>", flag: "FLAG{G30LOC4TOR}", attachment: None, hints: [
     "Analyze geolocation coordinates.",
     "Look for additional data in the text.",
     "Check for flag-related fields.",
     "Consider coordinate-based clues.",
     "Verify the flag field content."
   ]},
-  { id: 34, title: "OSINT Metadata", category: "OSINT", difficulty: "Beginner", description: "Analyze document metadata for flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>metadata=M0</pre>", flag: "FLAG{M0}", attachment: null, hints: [
+  { id: 34, title: "OSINT Metadata", category: "OSINT", difficulty: "Beginner", description: "Analyze document metadata for flag in FLAG{...} format.<br><pre><i>metadata=M0</i></pre>", flag: "FLAG{0S1NT_M3T4DAT4}", attachment: None, hints: [
     "Extract metadata from the document.",
     "Look for metadata fields in the text.",
     "Check for hidden or encoded data.",
@@ -265,7 +265,7 @@ const challenges = [
     "Consider decoding suspicious data.",
     "Focus on log entry patterns."
   ]},
-  { id: 39, title: "AES-256", category: "Cryptography", difficulty: "Professional", description: "Decrypt AES-encrypted flag.", flag: "FLAG{A3S}", attachment: "assets/AES_enc.txt", hints: [
+  { id: 39, title: "AES-256", category: "Cryptography", difficulty: "Professional", description: "Decrypt AES-encrypted flag.", flag: "FLAG{A3S-25G}", attachment: "assets/AES_enc.txt", hints: [
     "Use the provided encryption key for AES decryption.",
     "Look for ciphertext in the file.",
     "Check for AES mode and IV settings.",
@@ -300,7 +300,7 @@ const challenges = [
     "Check for 8-bit binary patterns.",
     "Verify the converted text format."
   ]},
-  { id: 44, title: "ROT13", category: "Cryptography", difficulty: "Amateur", description: "Apply ROT13 decryption to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>ciphertext=E0G13_F3PERG</pre>", flag: "FLAG{R0T}", attachment: null, hints: [
+  { id: 44, title: "ROT13", category: "Cryptography", difficulty: "Amateur", description: "Apply ROT13 decryption to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>ciphertext=E0G13_F3PERG</pre>", flag: "FLAG{R0T_13x}", attachment: null, hints: [
     "Apply ROT13 cipher decryption.",
     "Look for ROT13-encoded text.",
     "Consider online ROT13 decoders.",
@@ -314,7 +314,7 @@ const challenges = [
     "Check for letter mappings in the cipher.",
     "Verify the decoded text structure."
   ]},
-  { id: 46, title: "RSA key", category: "Cryptography", difficulty: "Novice", description: "Factorize RSA key to find the flag.", flag: "FLAG{RS4}", attachment: "assets/RSA.txt", hints: [
+  { id: 46, title: "RSA key", category: "Cryptography", difficulty: "Novice", description: "Factorize RSA key to find the flag.", flag: "FLAG{RS4_K3Y}", attachment: "assets/RSA.txt", hints: [
     "Factorize the RSA modulus.",
     "Look for n and e values in the file.",
     "Consider small modulus values.",
@@ -328,14 +328,14 @@ const challenges = [
     "Consider log parsing techniques.",
     "Verify the hidden data format."
   ]},
-  { id: 48, title: "Archive Zip", category: "Steganography", difficulty: "Professional", description: "Extract flag from ZIP metadata.", flag: "FLAG{Z1P}", attachment: "assets/flag.zip", hints: [
+  { id: 48, title: "Archive Zip", category: "Steganography", difficulty: "Professional", description: "Extract flag from ZIP metadata.", flag: "FLAG{Z1P_4RCH1V3}", attachment: "assets/flag.zip", hints: [
     "Examine ZIP archive metadata.",
     "Look for comments in the ZIP file.",
     "Check for hidden text in metadata.",
     "Consider ZIP metadata tools.",
     "Verify the extracted text format."
   ]},
-  { id: 49, title: "Network Flag", category: "Forensics", difficulty: "Novice", description: "Analyze network traffic to find the flag.", flag: "FLAG{N3T}", attachment: "assets/flagged.pcap", hints: [
+  { id: 49, title: "Network Flag", category: "Forensics", difficulty: "Novice", description: "Analyze network traffic to find the flag.", flag: "FLAG{N3TW0RK_FL4G}", attachment: "assets/flagged.pcap", hints: [
     "Inspect network packets for data.",
     "Filter for TCP or specific protocols.",
     "Look for encoded payloads.",
