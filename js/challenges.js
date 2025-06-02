@@ -76,7 +76,7 @@ const challenges = [
     "Check for patterns in the hex dump.",
     "Focus on data fields in the log."
   ]},
-  { id: 12, title: "Hidden File", category: "Forensics", difficulty: "Beginner", description: "Extract the flag from the zip archive. Ethical analysis.", flag: "FLAG_H1D3_FL4G", attachment: "assets/flag.zip", hints: [
+  { id: 12, title: "Hidden File", category: "Forensics", difficulty: "Beginner", description: "Extract the flag from the zip archive. Ethical analysis.", flag: "FLAG{H1D3_FL4G}", attachment: "assets/flag.zip", hints: [
     "Try common passwords to unlock the archive.",
     "Look for simple or default passwords.",
     "Check if the zip contains a single file.",
@@ -195,11 +195,11 @@ const challenges = [
     "Check for specific error outputs.",
     "Focus on script-related logs."
   ]},
-  { id: 29, title: "Network Leak", category: "Web", difficulty: "Professional", description: "API request reveals flag in headers.", flag: "FLAG{N3TW0rk}", attachment: null, hints: [
+  { id: 29, title: "Network Leak", category: "Web", difficulty: "Professional", description: "Inspect network headers in DevTools to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>X-Flag: FLAG{N3TW0rk}</pre>", flag: "FLAG{N3TW0rk}", attachment: null, hints: [
     "Inspect network headers in developer tools.",
     "Open the Network tab in DevTools.",
-    "Look for API or flag-related requests.",
-    "Check for custom headers in responses.",
+    "Look for custom headers in responses.",
+    "Check for flag-related headers.",
     "Focus on specific request types."
   ]},
   { id: 30, title: "Morse Code", category: "Cryptography", difficulty: "Beginner", description: "Decode Morse code to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>CODE: ..-. .-.. .- --. / -- --- .-..- ... -</pre>", flag: "FLAG{Morse}", attachment: null, hints: [
