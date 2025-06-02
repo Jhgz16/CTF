@@ -3,9 +3,9 @@ let hintProgress = {};
 function getPointsForDifficulty(difficulty) {
   const pointsMap = {
     Novice: 50,
-    Easy: 100,
-    Medium: 200,
-    Hard: 400,
+    Beginner: 100,
+    Amateur: 200,
+    Professional: 400,
     Insane: 500
   };
   return pointsMap[difficulty] || 0;
@@ -38,14 +38,14 @@ function renderChallenges() {
     acc[challenge.difficulty].push(challenge);
     return acc;
   }, {});
-  const difficultyOrder = ['Novice', 'Easy', 'Medium', 'Hard', 'Insane'];
+  const difficultyOrder = ['Novice', 'Beginner', 'Amateur', 'Professional', 'Insane'];
 
   categoriesDiv.innerHTML = '';
   difficultyOrder.forEach(difficulty => {
     if (challengesByDifficulty[difficulty]) {
       const section = document.createElement('section');
       section.className = 'mb-12';
-      section.innerHTML = `<h3 class="text-2xl font-semibold mb-6 text-rose-400">${difficulty} Challenges</h3>`;
+      section.innerHTML = `<h3 class="text-2xl font-semibold mb-6 text-rose-400">${difficulty} Level</h3>`;
       const grid = document.createElement('div');
       grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
       challengesByDifficulty[difficulty].sort((a, b) => a.id - b.id).forEach(challenge => {
@@ -82,7 +82,7 @@ function renderChallenges() {
 function showNextHint(challengeId) {
   const challenge = challenges.find(c => c.id === challengeId);
   if (!challenge) {
-    console.error('Error: Challenge not found for id: ${challengeId}');
+    console.error(`Error: Challenge not found for id ${challengeId}`);
     return;
   }
   const currentProgress = hintProgress[challengeId] || 0;
@@ -128,17 +128,6 @@ function submitFlag(challengeId) {
   }
 }
 
-async function fetchNetworkFlag() {
-  try {
-    const response = await fetch('/api/flag', { headers: { 'Accept': 'text/plain' } });
-    const flag = 'FLAG{N3TW0rk}';
-    console.log('X-Flag:', flag);
-  } catch (e) {
-    console.error('Fetch error:', e);
-  }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   renderChallenges();
-  fetchNetworkFlag();
 });
