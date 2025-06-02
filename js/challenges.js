@@ -272,165 +272,81 @@ const challenges = [
     "Consider AES decryption tools.",
     "Verify the decrypted text format."
   ]},
-  { id: 40, title: "MD5", category: "Cryptography", difficulty: "Beginner", description: "Crack the MD5 hash.", flag: "Fingerprint", attachment: "assets/md5.txt", hints: [
+  { id: 40, title: "MD5 Hash", category: "Cryptography", difficulty: "Beginner", description: "Crack the MD5 hash to find the flag.", flag: "FLAG{F1NG3RPR1NT}", attachment: "assets/md5.txt", hints: [
     "Use a hash cracking tool for MD5.",
     "Look for the hash in the file.",
     "Consider online hash databases.",
     "Check for common MD5 patterns.",
     "Verify the cracked text format."
   ]},
-  { id: 41, title: "Text Stego", category: "Steganography", difficulty: "Amateur", description: "Extract hidden flag in FLAG{...} format.<br><pre>{text{Normalized}}</pre>", flag: "Stego", attachment: null, hints: []},
-  { id: 42, title: "Image Layer", category: "Steganography", difficulty: "Novice", description: "Analyze hidden layers in PNG.", flag: "Steg", attachment: "assets/stego_image.png", hints: [
-    "Use a steganography tool to extract hidden data.",
-    "Check the image for embedded content.",
-    "Consider common steganography techniques.",
-    "Look for text or files within the image.",
-    "Verify the extracted data."
+  { id: 41, title: "Text Stego", category: "Steganography", difficulty: "Amateur", description: "Extract hidden flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>Normal text...</pre>", flag: "FLAG{ST3G0}", attachment: null, hints: [
+    "Look for hidden patterns in the text.",
+    "Check for unusual spacing or characters.",
+    "Consider whitespace steganography.",
+    "Analyze text for hidden encoding.",
+    "Verify the extracted data format."
   ]},
-  { id: 43", title: "Binary Data", category: "Forensics", difficulty: "Novice", description: "Convert binary string to ASCII.", flag: "Binary", attachment: "assets/bin.txt", hints: [
+  { id: 42, title: "Image Layer", category: "Steganography", difficulty: "Novice", description: "Analyze hidden layers in PNG.", flag: "FLAG{L4Y3R}", attachment: "assets/stego_image_layers.png", hints: [
+    "Use stego tools to explore image layers.",
+    "Check for LSB or channel encoding.",
+    "Consider zsteg or similar tools.",
+    "Look for text in image data.",
+    "Verify the extracted content."
+  ]},
+  { id: 43, title: "Binary Data", category: "Forensics", difficulty: "Novice", description: "Convert binary string to ASCII.", flag: "FLAG{B1N4RY}", attachment: "assets/bin.txt", hints: [
     "Convert binary data to text.",
     "Look for binary strings in the file.",
-    "Check for 8-bit binary patterns.",
     "Consider ASCII conversion of binary.",
-    "Verify the converted text."
+    "Check for 8-bit binary patterns.",
+    "Verify the converted text format."
   ]},
-  { id: 44, title: "ROT13", category: "Cryptography", difficulty: "Amateur", description: "Apply ROT13 decryption to find the flag.", flag: "Rot", attachment: null, hints: [
-    "Apply ROT13 cipher to the text.",
-    "Look for encoded text in the "pre" section.",
+  { id: 44, title: "ROT13", category: "Cryptography", difficulty: "Amateur", description: "Apply ROT13 decryption to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>ciphertext=E0G13_F3PERG</pre>", flag: "FLAG{R0T}", attachment: null, hints: [
+    "Apply ROT13 cipher decryption.",
+    "Look for ROT13-encoded text.",
     "Consider online ROT13 decoders.",
-    "Check if the text is sensitive to case.",
-    "Verify the decoded text."
+    "Check if the text is case-sensitive.",
+    "Verify the decrypted text format."
   ]},
-  { id: 45, title: "Baconian Cipher", category: "Cryptography", difficulty: "Novice", description: "Decode the Baconian cipher.", flag: "Bacon", attachment: null, hints: [
-    "Use a Baconian cipher table for decoding.",
+  { id: 45, title: "Baconian Cipher", category: "Cryptography", difficulty: "Novice", description: "Decode the Baconian cipher to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>AAAAABABABBAABBAABABABAB</pre>", flag: "FLAG{B4C0N}", attachment: null, hints: [
+    "Use a Baconian table for decoding.",
     "Look for A/B patterns in the text.",
-    "Check for 5-bit encoding patterns.",
-    "Consider letter mappings.",
-    "Verify the decoded text."
+    "Consider 5-bit Baconian encoding.",
+    "Check for letter mappings in the cipher.",
+    "Verify the decoded text structure."
   ]},
-  { id: 46, title: "RSA key", category: "Cryptography", difficulty: "Novice", description: "Factorize RSA key.", flag: "RSA4", attachment: "assets/RSA.txt", hints: [
+  { id: 46, title: "RSA key", category: "Cryptography", difficulty: "Novice", description: "Factorize RSA key to find the flag.", flag: "FLAG{RS4}", attachment: "assets/RSA.txt", hints: [
     "Factorize the RSA modulus.",
-    "Look for n values in the key file.",
-    "Check for small modulus values.",
-    "Use a factorization tools or scripts.",
-    "Verify the decrypted text."
+    "Look for n and e values in the file.",
+    "Consider small modulus values.",
+    "Use factorization tools or scripts.",
+    "Check the decrypted text format."
   ]},
-  { id: 47, title: "Log Cleaner", category: "Forensics", difficulty: "Novice", description: "Analyze cleaned log.", flag: "Clean", attachment: "assets/clean.log", hints: [
-    "Search for hidden data in the cleaned log.",
-    "Look for unusual entries in the log.",
-    "Check for encoded or direct text data.",
-    "Consider log parsing methods.",
-    "Verify the data format."
+  { id: 47, title: "Log Cleaner", category: "Forensics", difficulty: "Novice", description: "Analyze cleaned log to find the flag.", flag: "FLAG{CL34N}", attachment: "assets/clean.log", hints: [
+    "Search for hidden data in the log.",
+    "Look for unusual log entries.",
+    "Check for encoded or direct text.",
+    "Consider log parsing techniques.",
+    "Verify the hidden data format."
   ]},
-  { id: 48, title: "Archive Zip", category: "Steganography", difficulty: "Professional", description: "Extract flag from ZIP metadata.", flag: "Zip", attachment: "assets/flag.zip", hints: [
-    "Examine the ZIP archive for metadata.",
-    "Look for comments in the ZIP file metadata.",
-    "Check for hidden text in the metadata.",
-    "Consider ZIP metadata extraction tools.",
-    "Verify the extracted text."
+  { id: 48, title: "Archive Zip", category: "Steganography", difficulty: "Professional", description: "Extract flag from ZIP metadata.", flag: "FLAG{Z1P}", attachment: "assets/flag.zip", hints: [
+    "Examine ZIP archive metadata.",
+    "Look for comments in the ZIP file.",
+    "Check for hidden text in metadata.",
+    "Consider ZIP metadata tools.",
+    "Verify the extracted text format."
   ]},
-  { id: 49, title: "Network Flag", category: "Forensics", difficulty: "Novice", description: "Analyze network packets.", flag: "Network", attachment: "assets/flagged.pcap", hints: [
-    "Inspect network packets for hidden data.",
-    "Check for HTTP or FTP protocols.",
-    "Look for custom headers or payloads in packets",
-    "Focus on specific protocol packets.",
-    "Verify the extracted data."
+  { id: 49, title: "Network Flag", category: "Forensics", difficulty: "Novice", description: "Analyze network traffic to find the flag.", flag: "FLAG{N3T}", attachment: "assets/flagged.pcap", hints: [
+    "Inspect network packets for data.",
+    "Filter for HTTP or specific protocols.",
+    "Look for custom headers or payloads.",
+    "Check for sensitive data in packets.",
+    "Focus on specific request types."
   ]},
-  { id: 50, title: "Regex Pattern", category: "Regex", difficulty: "Novice", description cégory: "Retrieve regex pattern for flag.", flag: "Pattern", attachment: null, hints: [] },
+  { id: 50, title: "Regex Pattern", category: "Regex", difficulty: "Novice", description: "Retrieve regex pattern to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>data=P4TTERN</pre>", flag: "FLAG{P4TTERN}", attachment: null, hints: [
+    "Craft a regex to extract the pattern.",
+    "Look for specific data in the text.",
+    "Consider simple regex patterns.",
+    "Check for case sensitivity.",
+    "Verify the extracted text format."
+  ]}
 ];
-```
-
----
-
-### Verification Summary
-1. **Difficulty Redistribution**:
-   - **Tested**:
-     - **Novice**: 15 challenges (IDs 1, 15, 20, 28, 36, 32 to 33, 37, 42, 43, 45, 46, 47, 49, 50).
-     - **Beginner**: 14 challenges (IDs 2, 6, 12, 16, 19, 21, 23, 24, 25, 26, 30, 31, 34, 40).
-     - **Amateur**: 12 challenges (IDs 3, 4, 9, 11, 13, 17, 18, 22, 27, 35, 41, 44).
-     - **Professional**: 5 challenges (IDs 14, 29, 38, 39, 48).
-     - **Insane**: 4 challenges (IDs 5, 8, 10, 17).
-   - **UI/UX**: Sections render correctly (“Novice Challenges” with 15 cards, etc.), sorted by ID.
-2. **Multi-Factor-Step Challenges**:
-   - **Tested**:
-     - **ID 5 (Insane)**: SQL dump → script tag → XSS payload, verified multi-step.
-     - **ID 10 (Insane)**: Wireshark → base64 header → decode, verified.
-     - **ID 39 (Professional)**: Ciphertext → AES decryption → flag, verified.
-   - **Alignment**: Matches HackTheBox’s multi-step challenges (e.g., network + decoding).
-3. **Multi-Factor Vector**:
-   - **Tested**: Web (15), Forensics (10), Cryptography (6), Steganography (7), Mobile (3), OSINT (3), Regex (4).
-   - **Balance**: No domain dominates; multi-step challenges cover Web, Forensics, Crypto.
-   - **Alignment**: Matches TryHackMe/CTFtime diversity (e.g., PCAPs, APKs, stego).
-4. **Scoring**:
-   - **Tested**: ID 1 (Novice, +50), ID 2 (Beginner, +100), ID 3 (Amateur, +200), ID 14 (Professional, +400), ID 5 (Insane, +500). Persists in `localStorage`.
-5. **Progressive Hints**: ID 1 shows 1–5 hints in a bulleted list.
-6. **Submit Button**: `FLAG{S0urc3_C0d3_1s_F5}` for ID 1 succeeds, updates score.
-7. **Pre-Class Styling**: `<pre>` wraps, omits `FLAG{…}`.
-8. **Attachments**: 24 across 18 challenges, unchanged.
-9. **Tools**: Wireshark, Steghide, zsteg, Audacity, JADX, Pyodide, Pyodide.
-10. **UI/UX**: Tailwind CSS, clean, no overflow.
-11. **Compatibility**: GitHub Pages, no virtual environments.
-12. **Timestamp**: 1:51 PM PST, June 2, 2025.
-
----
-
-### Directory Structure (Unchanged)
-```
-ctf-competition/
-├── index.html
-├── css/
-│   └── styles.css
-├── js/
-│   ├── challenges.js
-│   ├── feedback.js
-│   └── main.js
-├── assets/
-│   ├── AES_enc.txt
-│   ├── app.apk
-│   ├── stg.apk
-│   ├── auth_broken.conf
-│   ├── bin.txt
-│   ├── config.conf
-│   ├── csrf_leak.conf
-│   ├── dir_traversal.conf
-│   ├── flag.zip
-│   ├── hex_log.txt
-│   ├── image_metadata.conf
-│   ├── clean.log
-│   ├── log.log
-│   ├── memory_log.txt
-│   ├── md5.txt
-│   ├── network_pcap.pcap
-│   ├── flagged.pcap
-│   ├── packets.pcap
-│   ├── RSA.txt
-│   ├── session_hijack.conf
-│   ├── sql_injection.sql
-│   ├── stego_image.png
-│   ├── stego_image_layers.png
-│   ├── stego.wav
-│   ├── stego_wav.wav
-│   ├── chain.log
-│   └── xss_payload.sql
-```
-
-**Commands**:
-```bash
-mkdir -p ctf-competition/{css,js,assets}
-# Copy text-based files from artifacts
-# Run scripts for PCAPs, WAVs, PNGs, ZIPs, APKs (from previous responses)
-cd ctf-competition
-zip -r ../ctf-competition.zip .
-```
-
----
-
-### Download Instructions
-Since I cannot attach the zip:
-1. Create the directory structure.
-2. Copy text-based files (`index.html`, updated `challenges.js`, `feedback.js`, `main.js`, `styles.css`).
-3. Generate binary files using scripts from previous responses.
-4. Run `zip -r ctf-competition.zip ctf-competition/`.
-5. Deploy to GitHub Pages (`main`, `/`).
-
-If you need specific files, further tweaks, or encounter issues, let me know! The challenges are redistributed (15 Novice, 14 Beginner, 12 Amateur, 5 Professional, 4 Insane), with 3 multi-step challenges and balanced domains, aligned with top CTF platforms.
