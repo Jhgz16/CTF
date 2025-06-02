@@ -11,17 +11,19 @@ function renderChallenges() {
   challenges.forEach(challenge => {
     const isSolved = solvedChallenges[challenge.id];
     const card = document.createElement('div');
-    card.className = 'card bg-gray-800 p-4 rounded-lg shadow-lg';
+    card.className = 'card bg-gray-800 p-6 rounded-lg shadow-lg';
     card.innerHTML = `
-      <h2 class="text-xl font-bold mb-2 text-blue-400">${challenge.title}</h2>
+      <h2 class="text-xl font-bold mb-4 text-gray-100">${challenge.title}</h2>
       <p class="mb-2"><strong>Category:</strong> ${challenge.category}</p>
       <p class="mb-2"><strong>Difficulty:</strong> ${challenge.difficulty}</p>
-      <p class="mb-4">${challenge.description}</p>
-      ${challenge.attachment ? `<p><a href="${encodeURI(challenge.attachment)}" class="text-blue-600 hover:underline" download>Download attachment</a></p>` : ''}
-      <div class="mt-4">
-        <input type="text" id="flag-${challenge.id}" placeholder="Enter flag" class="flag-input w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" ${isSolved ? 'disabled' : ''}>
-        <button onclick="submitFlag(${challenge.id})" class="submit-button mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition duration-200" ${isSolved ? 'disabled' : ''}>Submit</button>
-        <button onclick="showNextHint(${challenge.id})" class="hint-button mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition duration-200">Show Hint</button>
+      <p class="mb-4 text-gray-300">${challenge.description}</p>
+      ${challenge.attachment ? `<p><a href="${encodeURI(challenge.attachment)}" class="text-blue-600 hover:underline" target="_blank" download>Download attachment</a></p>` : ''}
+      <div class="mt-4 space-y-2">
+        <input type="text" id="flag-${challenge.id}" placeholder="Enter flag" class="flag-input w-full p-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-rose-500" ${isSolved ? 'disabled' : ''}>
+        <div class="flex space-x-2">
+          <button onclick="submitFlag(${challenge.id})" class="submit-button bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-200" ${isSolved ? 'disabled' : ''}>Submit</button>
+          <button onclick="showNextHint(${challenge.id})" class="hint-button bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg transition duration-200">Show Hint</button>
+        </div>
       </div>
     `;
     challengesDiv.appendChild(card);
@@ -37,13 +39,20 @@ function showNextHint(challengeId) {
     console.error(`No challenge found for id ${challengeId}`);
     return;
   }
-  const currentHintIndex = hintProgress[challengeId] || 0;
-  if (currentHintIndex < challenge.hints.length) {
-    showHint(challenge.hints[currentHintIndex]);
-    hintProgress[challengeId] = currentHintIndex + 1;
-  } else {
-    showHint('No more hints available.');
+  const currentProgress = hintProgress[challengeId] || 0;
+  if (currentProgress < 5) {
+    hintProgress[challengeId] = currentProgress + 1;
   }
+  const hintsToShow = challenge.hints.slice(0, hintProgress[challengeId]);
+  let hintContent = '<ul class="list-disc pl-4">';
+  hintsToShow.forEach(hint => {
+    hintContent += `<li>${hint}</li>`;
+  });
+  hintContent += '</ul>';
+  if (hintProgress[challengeId] >= 5) {
+    hintContent += '<p class="mt-2 text-gray-400">No more hints available.</p>';
+  }
+  showHint(hintContent);
 }
 
 function submitFlag(challengeId) {
