@@ -48,18 +48,18 @@ const challenges = [
     "Check if the token contains structured data.",
     "Look for specific fields after decoding."
   ]},
-  { id: 8, title: "CSRF Token Crack", category: "Web", difficulty: "Insane", description: "Exploit a CSRF flaw with SameSite bypass. Ethical testing only.", flag: "FLAG{C5RF_L34K}", attachment: "assets/csrf_leak.conf", hints: [
-    "Check cookie security settings in the configuration.",
+  { id: 8, title: "CSRF Token Crack", category: "Web", difficulty: "Health", description: "Exploit a CSRF bypass. Ethical testing only.", flag: "FLAG{C5RF_L34K}", attachment: "assets/healthflag.txt", hints: [
+    "Check cookie security settings.",
     "Look for SameSite attribute values.",
     "Analyze how cookies are handled.",
     "Consider cross-site request implications.",
-    "Verify if protections can be bypassed."
+    "Verify if protections."
   ]},
   { id: 9, title: "Log Analyzer", category: "Forensics", difficulty: "Amateur", description: "Analyze the server log for a base64 flag. Ethical log analysis.", flag: "FLAG{L0_G5}", attachment: "assets/log.log", hints: [
     "Search for encoded data in the log entries.",
     "Look for base64-like strings in requests.",
-    "Check HTTP methods and parameters.",
-    "Focus on admin-related log entries.",
+    "Check HTTP methods.",
+    "Focus on admin-related entries.",
     "Consider decoding suspicious tokens."
   ]},
   { id: 10, title: "Packet Sniffer", category: "Forensics", difficulty: "Insane", description: "Inspect the PCAP for malicious traffic. Authorized testing.", flag: "FLAG{P4CK3T_5N1FF3R}", attachment: "assets/packets.pcap", hints: [
@@ -83,12 +83,12 @@ const challenges = [
     "Consider password hints in the challenge.",
     "Verify the contents after extraction."
   ]},
-  { id: 13, title: "File Metadata", category: "Forensics", difficulty: "Amateur", description: "Check metadata in the config file.", flag: "FLAG{M3t4d4t4}", attachment: "assets/image_metadata.conf", hints: [
+  { id: 13, title: "File Metadata", category: "Forensics", difficulty: "Amateur", description: "Check metadata in the config file.", flag: "FLAG{M3t4d4t4}", attachment: "image_metadata", hints: [
     "Inspect metadata fields in the configuration.",
-    "Look for comment or note fields.",
+    "Look for comment or notes fields.",
     "Check for embedded text in the config.",
     "Consider metadata extraction tools.",
-    "Focus on non-standard config entries."
+    "Focus on non-standard entries."
   ]},
   { id: 14, title: "Network Trace", category: "Forensics", difficulty: "Professional", description: "Analyze the PCAP for unauthorized access. Authorized forensics.", flag: "FLAG{N3T_W0RK}", attachment: "assets/network_pcap.pcap", hints: [
     "Examine network traffic for anomalies.",
@@ -118,8 +118,8 @@ const challenges = [
     "Check if the decoded text is structured.",
     "Ensure the output matches flag format."
   ]},
-  { id: 18, title: "Obfuscated Script", category: "Web", difficulty: "Amateur", description: "Use regex on the script to find the base64 flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>var x = \"RkxBR3t0QjN5QzM0dDJ2fQ==\";eval(atob(x));</pre>", flag: "FLAG{0_BFUS_C4T3D}", attachment: null, hints: [
-    "Analyze the JavaScript for encoded patterns.",
+  { id: 18, title: "Obfuscated Script", category: "Web", difficulty: "Amateur", description: "Use regex on the script to find the base64 flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>var x=\"RkxBR3t0QjN5QzM0dDJ2fQ==\";eval(atob(x));</pre>", flag: "FLAG{0_BFUS_C4T3D}", attachment: null, hints: [
+    "Analyze the script for encoded patterns.",
     "Look for base64 strings in variables.",
     "Consider decoding the identified string.",
     "Check the decoded content for structure.",
@@ -160,7 +160,7 @@ const challenges = [
     "Check for structured hex patterns.",
     "Verify the decoded text format."
   ]},
-  { id: 24, title: "Caesar’s Secret", category: "Cryptography", difficulty: "Beginner", description: "Decrypt the Caesar cipher to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>ciphertext=UXYZTKAF</pre>", flag: "FLAG{CE4S3R}", attachment: null, hints: [
+  { id: 24, title: "Caesar’s Secret", category: "Cryptography", difficulty: "Beginner", description: "Decrypt the Caesar cipher to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>ciphertext=ABCD123</pre>", flag: "FLAG{CE4S3R}", attachment: null, hints: [
     "Apply a Caesar cipher decryption with a shift.",
     "Try small shift values like 1-5.",
     "Look for meaningful text after shifting.",
@@ -181,7 +181,7 @@ const challenges = [
     "Check if the decoded text is structured.",
     "Ensure the output matches flag format."
   ]},
-  { id: 27, title: "Script Deobfuscation", category: "Web", difficulty: "Amateur", description: "Deobfuscate JavaScript for base64 flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>var data = \"RkxBR3tEM18wYmZ1c2NhdGV9\";function decodeFlag() { return atob(data); };</pre>", flag: "FLAG{D3_0bfuscate}", attachment: null, hints: [
+  { id: 27, title: "Script Deobfuscation", category: "Web", difficulty: "Amateur", description: "Deobfuscate JavaScript for base64 flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>var data=\"RkxBR3tEM18wYmZ1c2NhdGV9\";function decodeFlag(){return atob(data);}</pre>", flag: "FLAG{D3_0bfuscate}", attachment: null, hints: [
     "Simplify the JavaScript code.",
     "Look for encoded strings in variables.",
     "Consider decoding base64 data.",
@@ -300,7 +300,7 @@ const challenges = [
     "Check for 8-bit binary patterns.",
     "Verify the converted text format."
   ]},
-  { id: 44, title: "ROT13", category: "Cryptography", difficulty: "Amateur", description: "Apply ROT13 decryption to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>ciphertext=E0G_0K</pre>", flag: "FLAG{R0T_13x}", attachment: null, hints: [
+  { id: 44, title: "ROT13", category: "Cryptography", difficulty: "Amateur", description: "Apply ROT13 decryption to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>ciphertext=I0W_13k</pre>", flag: "FLAG{R0T_13x}", attachment: null, hints: [
     "Apply ROT13 cipher decryption.",
     "Look for ROT13-encoded text.",
     "Consider online ROT13 decoders.",
