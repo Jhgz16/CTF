@@ -90,12 +90,12 @@ const challenges = [
     "Consider metadata extraction tools.",
     "Focus on non-standard config entries."
   ]},
-  { id: 14, title: "Network Trace", category: "Forensics", difficulty: "Professional", description: "Analyze the PCAP for unauthorized access. Authorized forensics.", flag: "FLAG{N3T_W0CK}", attachment: "assets/network_pcap.pcap", hints: [
+  { id: 14, title: "Network Trace", category: "Forensics", difficulty: "Professional", description: "Analyze the PCAP for unauthorized access. Authorized forensics.", flag: "FLAG{N3T_W0RK}", attachment: "assets/network_pcap.pcap", hints: [
     "Examine network traffic for anomalies.",
-    "Filter for specific protocols like HTTP.",
+    "Filter for specific protocols like TCP.",
     "Look for unusual headers or payloads.",
-    "Check for sensitive data in responses.",
-    "Focus on traffic to specific IPs."
+    "Check for encoded data in TCP packets.",
+    "Decode any hex-encoded strings."
   ]},
   { id: 15, title: "Regex Filter", category: "Regex", difficulty: "Novice", description: "Match a regex pattern to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>pattern=R3G3X</pre>", flag: "FLAG{R3G3X}", attachment: null, hints: [
     "Apply a simple regex pattern to parse the data.",
@@ -125,7 +125,7 @@ const challenges = [
     "Check the decoded content for structure.",
     "Focus on the variable assignments."
   ]},
-  { id: 19, title: "Hidden in Plain Sight", category: "Steganography", difficulty: "Beginner", description: "Extract the flag from the PNG.", flag: "FLAG{H1DD3N}", attachment: "assets/stego_image.png", hints: [
+  { id: 19, title: "Hidden in Plain Sight", category: "Steganography", difficulty: "Beginner", description: "Extract the flag from the BMP.", flag: "FLAG{H1DD3N}", attachment: "assets/stego_image.bmp", hints: [
     "Use steganography tools with a common password.",
     "Try default passwords like 'secret'.",
     "Check for embedded text in the image.",
@@ -139,7 +139,7 @@ const challenges = [
     "Check for text hidden in the audio.",
     "Consider audio analysis tools."
   ]},
-  { id: 21, title: "Image Layers", category: "Steganography", difficulty: "Beginner", description: "Decode hidden layers in PNG.", flag: "FLAG{L4Y3R}", attachment: "assets/stego_image_layers.png", hints: [
+  { id: 21, title: "Image Layers", category: "Steganography", difficulty: "Beginner", description: "Decode hidden layers in BMP.", flag: "FLAG{L4Y3R}", attachment: "assets/stego_image_layers.bmp", hints: [
     "Explore hidden image layers with stego tools.",
     "Check for LSB encoding in the image.",
     "Consider tools like zsteg for analysis.",
@@ -286,7 +286,7 @@ const challenges = [
     "Analyze text for hidden encoding.",
     "Verify the extracted data format."
   ]},
-  { id: 42, title: "Image Layer", category: "Steganography", difficulty: "Novice", description: "Analyze hidden layers in PNG.", flag: "FLAG{L4Y3R}", attachment: "assets/stego_image_layers.png", hints: [
+  { id: 42, title: "Image Layer", category: "Steganography", difficulty: "Novice", description: "Analyze hidden layers in BMP.", flag: "FLAG{L4Y3R}", attachment: "assets/stego_image_layers.bmp", hints: [
     "Use stego tools to explore image layers.",
     "Check for LSB or channel encoding.",
     "Consider zsteg or similar tools.",
@@ -337,10 +337,10 @@ const challenges = [
   ]},
   { id: 49, title: "Network Flag", category: "Forensics", difficulty: "Novice", description: "Analyze network traffic to find the flag.", flag: "FLAG{N3T}", attachment: "assets/flagged.pcap", hints: [
     "Inspect network packets for data.",
-    "Filter for HTTP or specific protocols.",
-    "Look for custom headers or payloads.",
-    "Check for sensitive data in packets.",
-    "Focus on specific request types."
+    "Filter for TCP or specific protocols.",
+    "Look for encoded payloads.",
+    "Decode any base64-encoded strings.",
+    "Focus on specific packet types."
   ]},
   { id: 50, title: "Regex Pattern", category: "Regex", difficulty: "Novice", description: "Retrieve regex pattern to find the flag in FLAG{...} format.<br><pre class='bg-gray-700 p-2 rounded'>data=P4TTERN</pre>", flag: "FLAG{P4TTERN}", attachment: null, hints: [
     "Craft a regex to extract the pattern.",
