@@ -1,133 +1,122 @@
-let hintProgress = {};
-
-function getPointsForDifficulty(difficulty) {
-  const pointsMap = {
-    Novice: 50,
-    Beginner: 100,
-    Amateur: 200,
-    Professional: 400,
-    Insane: 500
-  };
-  return pointsMap[difficulty] || 0;
-}
-
-function calculateScore() {
-  const solvedChallenges = JSON.parse(localStorage.getItem('solvedChallenges') || '{}');
-  return Object.keys(solvedChallenges).reduce((sum, challengeId) => {
-    const challenge = challenges.find(c => c.id === parseInt(challengeId));
-    return challenge ? sum + getPointsForDifficulty(challenge.difficulty) : sum;
-  }, 0);
-}
-
-function updateScoreDisplay() {
-  const scoreElement = document.getElementById('scoreDisplay');
-  if (scoreElement) {
-    scoreElement.textContent = `Score: ${calculateScore()}`;
-  }
-}
-
-function renderChallenges() {
-  const categoriesDiv = document.getElementById('challenge-categories');
-  if (!categoriesDiv) {
-    console.error('Challenge categories div not found');
+function renderChallenges(challengesToRender) {
+  const container = document.getElementById('challenges');
+  if (!container) {
+    console.error('Challenges container not found.');
     return;
   }
-  const solvedChallenges = JSON.parse(localStorage.getItem('solvedChallenges') || '{}');
-  const challengesByDifficulty = challenges.reduce((acc, challenge) => {
-    acc[challenge.difficulty] = acc[challenge.difficulty] || [];
-    acc[challenge.difficulty].push(challenge);
-    return acc;
-  }, {});
-  const difficultyOrder = ['Novice', 'Beginner', 'Amateur', 'Professional', 'Insane'];
 
-  categoriesDiv.innerHTML = '';
-  difficultyOrder.forEach(difficulty => {
-    if (challengesByDifficulty[difficulty]) {
-      const section = document.createElement('section');
-      section.className = 'mb-12';
-      section.innerHTML = `<h3 class="text-2xl font-semibold mb-6 text-rose-400">${difficulty} Level</h3>`;
-      const grid = document.createElement('div');
-      grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
-      challengesByDifficulty[difficulty].sort((a, b) => a.id - b.id).forEach(challenge => {
-        const isSolved = solvedChallenges[challenge.id];
-        const challengeCard = document.createElement('div');
-        challengeCard.className = 'card bg-gray-800 p-6 rounded-lg shadow-lg';
-        challengeCard.innerHTML = `
-          <h4 class="text-lg font-bold mb-3 text-gray-100">${challenge.title}</h4>
-          <p class="mb-2"><strong>Category:</strong> ${challenge.category}</p>
-          <p class="mb-2"><strong>Points:</strong> ${getPointsForDifficulty(challenge.difficulty)}</p>
-          <p class="mb-4 text-gray-400">${challenge.description}</p>
-          ${challenge.attachment ? `<p><a href="${encodeURI(challenge.attachment)}" class="text-blue-500 hover:underline" target="_blank" download>Download artifact</a></p>` : ''}
-          <div class="flex flex-col space-y-4 mt-4">
-            <input type="text" id="flag-${challenge.id}" placeholder="Enter flag" class="flag-input w-full px-3 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-rose-500" ${isSolved ? 'disabled' : ''}>
-            <div class="flex space-x-3">
-              <button onclick="submitFlag(${challenge.id})" class="submit-button bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-300" ${isSolved ? 'disabled' : ''}>Submit</button>
-              <button onclick="showNextHint(${challenge.id})" class="hint-button bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg transition duration-300">View Hint</button>
-            </div>
-          </div>
-        `;
-        grid.appendChild(challengeCard);
-        if (!hintProgress[challenge.id]) {
-          hintProgress[challenge.id] = 0;
-        }
-      });
-      section.appendChild(grid);
-      categoriesDiv.appendChild(section);
-    }
+  if (!challengesToRender || !Array.isArray(challengesToRender)) {
+    console.error('Challenges array is not defined or invalid.');
+    return;
+  }
+
+  container.innerHTML = ''; // Clear existing content
+
+  challengesToRender.forEach(challenge => {
+    const div = document.createElement('div');
+    div.className = 'challenge-card';
+
+    // Sanitize description to prevent XSS
+    const description = challenge.description.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    div.innerHTML = `
+      <h2>${challenge.title}</h2>
+      <p><strong>Category:</strong> ${challenge.category}</p>
+      <p><strong>Difficulty:</strong> ${challenge.difficulty}</p>
+      <div class="description">${description}</div>
+      ${challenge.attachment ? `<a href="${challenge.attachment}" class="btn btn-secondary attachment-link" download>Download Attachment</a>` : ''}
+      <details class="hints">
+        <summary>View Hints</summary>
+        <ul>
+          ${challenge.hints.map(hint => `<li>${hint}</li>`).join('')}
+        </ul>
+      </details>
+      <button class="btn btn-primary submit-flag" data-id="${challenge.id}">Submit Flag</button>
+    `;
+    container.appendChild(div);
   });
 
-  updateScoreDisplay();
-}
-
-function showNextHint(challengeId) {
-  const challenge = challenges.find(c => c.id === challengeId);
-  if (!challenge) {
-    console.error(`Error: Challenge not found for id ${challengeId}`);
-    return;
-  }
-  const currentProgress = hintProgress[challengeId] || 0;
-  if (currentProgress < 5) {
-    hintProgress[challengeId] = currentProgress + 1;
-  }
-  const hintsToShow = challenge.hints.slice(0, hintProgress[challengeId]);
-  let hintContent = '<ul class="list-disc pl-5">';
-  hintsToShow.forEach(hint => {
-    hintContent += `<li>${hint}</li>`;
+  // Add event listeners for flag submission buttons
+  document.querySelectorAll('.submit-flag').forEach(button => {
+    button.addEventListener('click', openFlagModal);
   });
-  hintContent += '</ul>';
-  if (hintProgress[challengeId] >= 5) {
-    hintContent += '<p class="mt-3 text-gray-400">No additional hints available.</p>';
-  }
-  showHint(hintContent);
 }
 
-function submitFlag(challengeId) {
-  const inputElement = document.getElementById(`flag-${challengeId}`);
-  if (!inputElement) {
-    console.error(`Error: No input element found for challenge ${challengeId}`);
-    return;
+function filterChallenges() {
+  const category = document.getElementById('category-filter').value;
+  const difficulty = document.getElementById('difficulty-filter').value;
+
+  let filtered = window.challenges;
+
+  if (category !== 'all') {
+    filtered = filtered.filter(c => c.category === category);
   }
-  const input = inputElement.value.trim().replace(/[<>"]/g, '');
-  const challenge = challenges.find(c => c.id === challengeId);
+
+  if (difficulty !== 'all') {
+    filtered = filtered.filter(c => c.difficulty === difficulty);
+  }
+
+  renderChallenges(filtered);
+}
+
+function openFlagModal(event) {
+  const modal = document.getElementById('flag-modal');
+  const challengeId = event.target.getAttribute('data-id');
+  document.getElementById('challenge-id').value = challengeId;
+  document.getElementById('flag-input').value = '';
+  document.getElementById('flag-result').textContent = '';
+  modal.style.display = 'block';
+}
+
+function closeFlagModal() {
+  document.getElementById('flag-modal').style.display = 'none';
+}
+
+function submitFlag(event) {
+  event.preventDefault();
+  const flagInput = document.getElementById('flag-input').value.trim();
+  const challengeId = parseInt(document.getElementById('challenge-id').value);
+  const result = document.getElementById('flag-result');
+
+  const challenge = window.challenges.find(c => c.id === challengeId);
   if (!challenge) {
-    console.error(`Error: No challenge found for id ${challengeId}`);
+    result.textContent = 'Challenge not found.';
+    result.style.color = '#ff3e3e';
     return;
   }
-  const solvedChallenges = JSON.parse(localStorage.getItem('solvedChallenges') || '{}');
-  if (solvedChallenges[challenge.id]) {
-    showFeedback('This challenge is already solved.', false);
-    return;
-  }
-  if (input === challenge.flag) {
-    solvedChallenges[challenge.id] = true;
-    localStorage.setItem('solvedChallenges', JSON.stringify(solvedChallenges));
-    showFeedback('Correct flag! Challenge solved.', true);
-    renderChallenges();
+
+  if (flagInput === challenge.flag) {
+    result.textContent = 'Correct flag! Challenge solved.';
+    result.style.color = '#9fef00';
   } else {
-    showFeedback('Incorrect flag. Please try again.', false);
+    result.textContent = 'Incorrect flag. Try again.';
+    result.style.color = '#ff3e3e';
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderChallenges();
+  try {
+    // Initial render
+    renderChallenges(window.challenges);
+
+    // Filter event listeners
+    document.getElementById('category-filter').addEventListener('change', filterChallenges);
+    document.getElementById('difficulty-filter').addEventListener('change', filterChallenges);
+    document.getElementById('reset-filters').addEventListener('click', () => {
+      document.getElementById('category-filter').value = 'all';
+      document.getElementById('difficulty-filter').value = 'all';
+      renderChallenges(window.challenges);
+    });
+
+    // Modal event listeners
+    document.querySelector('.close').addEventListener('click', closeFlagModal);
+    window.addEventListener('click', (event) => {
+      if (event.target === document.getElementById('flag-modal')) {
+        closeFlagModal();
+      }
+    });
+    document.getElementById('flag-form').addEventListener('submit', submitFlag);
+  } catch (error) {
+    console.error('Error initializing application:', error);
+  }
 });
