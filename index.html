@@ -42,49 +42,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CTF Competition</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <title>CTF Platform</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-900 text-white font-sans">
-  <!-- FLAG{S0urC3_C0d3_1s_F5} -->
-
-  <div class="container mx-auto p-8">
-    <header class="mb-8 text-center">
-      <h1 class="text-4xl font-bold text-blue-400 mb-2">Ethical Hacking CTF Competition</h1>
-      <p class="text-gray-400 mb-4">Simulated environment for authorized testing.</p>
-      <div id="scoreDisplay" class="text-2xl font-semibold text-blue-600">Score: 0</div>
-    </header>
-    <div id="challenge-categories"></div>
-  </div>
-
-  <div id="hintModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-    <div class="bg-gray-800 p-6 rounded-lg max-w-md">
-      <h2 class="text-xl font-bold mb-4 text-blue-400">Hint</h2>
-      <div id="hintContent" class="mb-8 text-gray-300"></div>
-      <button id="closeHintModal" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Close</button>
+<body>
+  <header>
+    <nav>
+      <div class="logo">CTF Platform</div>
+      <div class="nav-links">
+        <a href="#" class="nav-link">Challenges</a>
+        <a href="#" class="nav-link">Leaderboard</a>
+        <a href="#" class="nav-link">Profile</a>
+      </div>
+    </nav>
+    <h1>Capture The Flag Challenges</h1>
+    <p>Hack, learn, and conquer 50 challenges across Web, Forensics, Crypto, and more!</p>
+  </header>
+  <main>
+    <section class="filter-bar">
+      <select id="category-filter">
+        <option value="all">All Categories</option>
+        <option value="Web">Web</option>
+        <option value="Forensics">Forensics</option>
+        <option value="Cryptography">Cryptography</option>
+        <option value="Regex">Regex</option>
+        <option value="Steganography">Steganography</option>
+        <option value="OSINT">OSINT</option>
+        <option value="Mobile">Mobile</option>
+      </select>
+      <select id="difficulty-filter">
+        <option value="all">All Difficulties</option>
+        <option value="Novice">Novice</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Amateur">Amateur</option>
+        <option value="Professional">Professional</option>
+        <option value="Insane">Insane</option>
+      </select>
+      <button id="reset-filters" class="btn btn-secondary">Reset Filters</button>
+    </section>
+    <div id="challenges" class="challenges-container"></div>
+  </main>
+  <div id="flag-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Submit Flag</h2>
+      <form id="flag-form">
+        <input type="text" id="flag-input" placeholder="Enter FLAG{...}" required>
+        <input type="hidden" id="challenge-id">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <p id="flag-result"></p>
     </div>
   </div>
-
-  <div id="feedbackModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-    <div class="bg-gray-800 p-6 rounded-lg max-w-md">
-      <h2 class="text-xl font-bold mb-4 text-blue-400">Feedback</h2>
-      <p id="feedbackContent" class="mb-8 text-gray-300"></p>
-      <button id="closeFeedbackModal" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Close</button>
-    </div>
-  </div>
-
-  <script>
-    document.cookie = "flag=FLAG{C00k13_Y4mmy};path=/;SameSite=Strict";
-    try {
-      undefinedFunction();
-    } catch (e) {
-      console.error("Error: FLAG{C0NS0L3}");
-    }
-  </script>
-
+  <footer>
+    <p>&copy; 2025 CTF Platform. Authorized testing only.</p>
+  </footer>
   <script src="js/challenges.js"></script>
-  <script src="js/feedback.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
