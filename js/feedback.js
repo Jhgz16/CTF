@@ -11,14 +11,14 @@ function showFeedback(message, isSuccess) {
   feedbackModal.classList.remove('hidden');
 }
 
-function showHint(hint) {
+function showHint(hintHtml) {
   const hintContent = document.getElementById('hintContent');
   const hintModal = document.getElementById('hintModal');
   if (!hintModal || !hintContent) {
     console.error('Hint modal elements not found');
     return;
   }
-  hintContent.textContent = hint || 'No more hints available';
+  hintContent.innerHTML = hintHtml || 'No hints available';
   hintModal.classList.remove('hidden');
 }
 
