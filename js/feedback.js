@@ -1,43 +1,26 @@
+const feedbackModal = document.getElementById('feedback-modal');
+const feedbackContent = document.getElementById('feedback-content');
+const closeFeedbackModal = document.getElementById('close-feedback-modal');
+
 function showFeedback(message, isSuccess) {
-  const feedbackContent = document.getElementById('feedbackContent');
-  const feedbackModal = document.getElementById('feedbackModal');
-  if (!feedbackModal || !feedbackContent) {
-    console.error('Feedback modal elements not found');
-    return;
-  }
-  feedbackContent.textContent = message;
-  feedbackContent.classList.toggle('text-green-400', isSuccess);
-  feedbackContent.classList.toggle('text-red-500', !isSuccess);
-  feedbackModal.classList.remove('hidden');
+    feedbackContent.textContent = message;
+    feedbackContent.className = `text-${isSuccess ? 'green' : 'red'}-400`;
+    feedbackModal.classList.remove('hidden');
 }
 
-function showHint(hintHtml) {
-  const hintContent = document.getElementById('hintContent');
-  const hintModal = document.getElementById('hintModal');
-  if (!hintModal || !hintContent) {
-    console.error('Hint modal elements not found');
-    return;
-  }
-  hintContent.innerHTML = hintHtml || 'No hints available';
-  hintModal.classList.remove('hidden');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const closeFeedbackModal = document.getElementById('closeFeedbackModal');
-  if (closeFeedbackModal) {
-    closeFeedbackModal.addEventListener('click', () => {
-      document.getElementById('feedbackModal').classList.add('hidden');
-    });
-  } else {
-    console.error('Close feedback modal button not found');
-  }
-
-  const closeHintModal = document.getElementById('closeHintModal');
-  if (closeHintModal) {
-    closeHintModal.addEventListener('click', () => {
-      document.getElementById('hintModal').classList.add('hidden');
-    });
-  } else {
-    console.error('Close hint modal button not found');
-  }
+closeFeedbackModal.addEventListener('click', () => {
+    feedbackModal.classList.add('hidden');
 });
+
+// Flag submission function
+window.submitFlag = (id, submittedFlag) => {
+    const encryptedFlag = encryptedFlags.find(f => f.id === id).flag;
+    const key = 'ctf-secret-key-2025'; // Hardcoded for demo; use secure key management in production
+    const flag = CryptoJS.AES.decrypt(encryptedFlag, key).toString(CryptoJS.enc.Utf8);
+    
+    if (submittedFlag === flag) {
+        showFeedback(`Correct flag! Points awarded: ${challenges.find(c => c.id === id).points}`, true);
+    } else {
+        showFeedback('Incorrect flag. Try again!', false);
+    }
+};
