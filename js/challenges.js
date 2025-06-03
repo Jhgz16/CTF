@@ -7,8 +7,7 @@ const challenges = [
         points: 100,
         description: "Find a way to execute a simple alert() via XSS on this page.",
         hint: "Try injecting a basic script tag in the input field.",
-        attachment: null,
-        flag: "CTF{xss_alert_101}"
+        attachment: null
     },
     {
         id: 2,
@@ -18,8 +17,7 @@ const challenges = [
         points: 100,
         description: "Bypass the login form using SQL injection.",
         hint: "Use a basic OR condition to bypass authentication.",
-        attachment: null,
-        flag: "CTF{sql_inject_101}"
+        attachment: null
     },
     {
         id: 3,
@@ -29,8 +27,7 @@ const challenges = [
         points: 100,
         description: "Decode this: FJHLTKAF. Shift is between 1-25.",
         hint: "Try a brute-force approach with all possible shifts.",
-        attachment: null,
-        flag: "CTF{cipher123}"
+        attachment: null
     },
     {
         id: 4,
@@ -40,8 +37,7 @@ const challenges = [
         points: 100,
         description: "Find the flag hidden in this image.",
         hint: "Check the image metadata or use a stego tool.",
-        attachment: "assets/challenges/challenge4.png",
-        flag: "CTF{stego_beginner}"
+        attachment: "assets/challenges/challenge4.png"
     },
     {
         id: 5,
@@ -51,8 +47,7 @@ const challenges = [
         points: 100,
         description: "Manipulate the cookie to gain admin access.",
         hint: "Inspect the cookie and try changing its value.",
-        attachment: null,
-        flag: "CTF{cookie_admin}"
+        attachment: null
     },
     {
         id: 6,
@@ -62,8 +57,7 @@ const challenges = [
         points: 100,
         description: "The flag is hidden in the page source.",
         hint: "Use browser developer tools to inspect the HTML.",
-        attachment: null,
-        flag: "CTF{source_flag_101}"
+        attachment: null
     },
     {
         id: 7,
@@ -73,8 +67,7 @@ const challenges = [
         points: 100,
         description: "Analyze this PCAP file to find the flag.",
         hint: "Look for HTTP traffic in Wireshark.",
-        attachment: "assets/challenges/challenge7.pcap",
-        flag: "CTF{http_flag}"
+        attachment: "assets/challenges/challenge7.pcap"
     },
     {
         id: 8,
@@ -84,8 +77,7 @@ const challenges = [
         points: 100,
         description: "Decode: Q1RGe2Jhc2U2NF9lYXN5fQ==",
         hint: "Use a base64 decoder tool or command.",
-        attachment: null,
-        flag: "CTF{base64_easy}"
+        attachment: null
     },
     {
         id: 9,
@@ -95,8 +87,7 @@ const challenges = [
         points: 200,
         description: "Access a hidden file using directory traversal.",
         hint: "Try navigating up the directory structure.",
-        attachment: null,
-        flag: "CTF{dir_trav_200}"
+        attachment: null
     },
     {
         id: 10,
@@ -106,8 +97,7 @@ const challenges = [
         points: 200,
         description: "Extract the flag from this image using steganography tools.",
         hint: "Use stegsolve or binwalk to analyze the image.",
-        attachment: "assets/challenges/challenge10.png",
-        flag: "CTF{stego_inter}"
+        attachment: "assets/challenges/challenge10.png"
     },
     {
         id: 11,
@@ -117,8 +107,7 @@ const challenges = [
         points: 200,
         description: "Given n, e, and c, decrypt the message.",
         hint: "Check if n can be factored easily.",
-        attachment: "assets/challenges/challenge11.txt",
-        flag: "CTF{rsa_cracked}"
+        attachment: "assets/challenges/challenge11.txt"
     },
     {
         id: 12,
@@ -128,8 +117,7 @@ const challenges = [
         points: 200,
         description: "Steal a session cookie to access a restricted area.",
         hint: "Inspect cookies in developer tools.",
-        attachment: null,
-        flag: "CTF{session_hijack}"
+        attachment: null
     },
     {
         id: 13,
@@ -139,8 +127,7 @@ const challenges = [
         points: 200,
         description: "Analyze this memory dump to find the flag.",
         hint: "Use Volatility to inspect processes.",
-        attachment: "assets/challenges/challenge13.mem",
-        flag: "CTF{mem_flag}"
+        attachment: "assets/challenges/challenge13.mem"
     },
     {
         id: 14,
@@ -150,8 +137,7 @@ const challenges = [
         points: 200,
         description: "Craft a CSRF attack to change user settings.",
         hint: "Create a malicious HTML form.",
-        attachment: null,
-        flag: "CTF{csrf_200}"
+        attachment: null
     },
     {
         id: 15,
@@ -161,8 +147,7 @@ const challenges = [
         points: 200,
         description: "Find the flag in this PCAP file.",
         hint: "Filter for specific protocols in Wireshark.",
-        attachment: "assets/challenges/challenge15.pcap",
-        flag: "CTF{packet_flag}"
+        attachment: "assets/challenges/challenge15.pcap"
     },
     {
         id: 16,
@@ -172,8 +157,7 @@ const challenges = [
         points: 200,
         description: "Extract the flag from this audio file.",
         hint: "Check for hidden data in spectrograms.",
-        attachment: "assets/challenges/challenge16.wav",
-        flag: "CTF{audio_stego}"
+        attachment: "assets/challenges/challenge16.wav"
     },
     {
         id: 17,
@@ -183,8 +167,7 @@ const challenges = [
         points: 200,
         description: "Crack this MD5 hash: 5f4dcc3b5aa765d61d8327deb882cf99",
         hint: "Use an online hash cracker or wordlist.",
-        attachment: null,
-        flag: "CTF{password}"
+        attachment: null
     },
     {
         id: 18,
@@ -194,8 +177,7 @@ const challenges = [
         points: 300,
         description: "Exploit a deserialization vulnerability to get the flag.",
         hint: "Look into PHP or Python object injection.",
-        attachment: null,
-        flag: "CTF{deserial_300}"
+        attachment: null
     },
     {
         id: 19,
@@ -205,8 +187,7 @@ const challenges = [
         points: 300,
         description: "Exploit this binary to read the flag.",
         hint: "Check for buffer overflow vulnerabilities.",
-        attachment: "assets/challenges/challenge19.bin",
-        flag: "CTF{binary_exploit}"
+        attachment: "assets/challenges/challenge19.bin"
     },
     {
         id: 20,
@@ -216,8 +197,7 @@ const challenges = [
         points: 300,
         description: "Extract the flag from this complex image.",
         hint: "Combine multiple stego techniques.",
-        attachment: "assets/challenges/challenge20.png",
-        flag: "CTF{stego_advanced}"
+        attachment: "assets/challenges/challenge20.png"
     },
     {
         id: 21,
@@ -227,8 +207,7 @@ const challenges = [
         points: 300,
         description: "Decrypt this AES-encrypted message.",
         hint: "You might need the key from another challenge.",
-        attachment: "assets/challenges/challenge21.txt",
-        flag: "CTF{aes_flag}"
+        attachment: "assets/challenges/challenge21.txt"
     },
     {
         id: 22,
@@ -238,8 +217,7 @@ const challenges = [
         points: 300,
         description: "Find the flag in these server logs.",
         hint: "Grep for unusual patterns.",
-        attachment: "assets/challenges/challenge22.log",
-        flag: "CTF{log_flag}"
+        attachment: "assets/challenges/challenge22.log"
     },
     {
         id: 23,
@@ -249,8 +227,7 @@ const challenges = [
         points: 300,
         description: "Use SSRF to access an internal service.",
         hint: "Try accessing localhost or internal IPs.",
-        attachment: null,
-        flag: "CTF{ssrf_300}"
+        attachment: null
     },
     {
         id: 24,
@@ -260,8 +237,7 @@ const challenges = [
         points: 300,
         description: "Escalate privileges to read the flag.",
         hint: "Check for misconfigured SUID binaries.",
-        attachment: null,
-        flag: "CTF{priv_esc}"
+        attachment: null
     },
     {
         id: 25,
@@ -271,8 +247,7 @@ const challenges = [
         points: 300,
         description: "Forge a cookie to gain admin access.",
         hint: "Reverse-engineer the cookie signing mechanism.",
-        attachment: null,
-        flag: "CTF{cookie_forge}"
+        attachment: null
     },
     {
         id: 26,
@@ -282,8 +257,7 @@ const challenges = [
         points: 300,
         description: "Reverse this binary to find the flag.",
         hint: "Use Ghidra or IDA to analyze the binary.",
-        attachment: "assets/challenges/challenge26.bin",
-        flag: "CTF{reverse_flag}"
+        attachment: "assets/challenges/challenge26.bin"
     },
     {
         id: 27,
@@ -293,8 +267,7 @@ const challenges = [
         points: 400,
         description: "Exploit a blind SQL injection to extract the flag.",
         hint: "Use time-based or boolean-based techniques.",
-        attachment: null,
-        flag: "CTF{sql_pro}"
+        attachment: null
     },
     {
         id: 28,
@@ -304,8 +277,7 @@ const challenges = [
         points: 400,
         description: "Break this custom encryption scheme.",
         hint: "Analyze the encryption algorithm carefully.",
-        attachment: "assets/challenges/challenge28.txt",
-        flag: "CTF{crypto_nightmare}"
+        attachment: "assets/challenges/challenge28.txt"
     },
     {
         id: 29,
@@ -315,8 +287,7 @@ const challenges = [
         points: 400,
         description: "Extract the flag from this multi-layered stego challenge.",
         hint: "Combine LSB, metadata, and file carving.",
-        attachment: "assets/challenges/challenge29.png",
-        flag: "CTF{stego_master}"
+        attachment: "assets/challenges/challenge29.png"
     },
     {
         id: 30,
@@ -326,7 +297,6 @@ const challenges = [
         points: 400,
         description: "Find the flag in this complex memory dump.",
         hint: "Use advanced Volatility plugins.",
-        attachment: "assets/challenges/challenge30.mem",
-        flag: "CTF{mem_master}"
+        attachment: "assets/challenges/challenge30.mem"
     }
 ];
