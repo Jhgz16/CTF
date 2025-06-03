@@ -42,61 +42,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CTF Platform</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>CTF Challenges</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #1f2937;
+      color: #f3f4f6;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <div class="logo">CTF Platform</div>
-      <div class="nav-links">
-        <a href="#" class="nav-link">Challenges</a>
-        <a href="#" class="nav-link">Leaderboard</a>
-        <a href="#" class="nav-link">Profile</a>
-      </div>
-    </nav>
-    <h1>Capture The Flag Challenges</h1>
-    <p>Hack, learn, and conquer 50 challenges across Web, Forensics, Crypto, and more!</p>
-  </header>
-  <main>
-    <section class="filter-bar">
-      <select id="category-filter">
-        <option value="all">All Categories</option>
-        <option value="Web">Web</option>
-        <option value="Forensics">Forensics</option>
-        <option value="Cryptography">Cryptography</option>
-        <option value="Regex">Regex</option>
-        <option value="Steganography">Steganography</option>
-        <option value="OSINT">OSINT</option>
-        <option value="Mobile">Mobile</option>
-      </select>
-      <select id="difficulty-filter">
-        <option value="all">All Difficulties</option>
-        <option value="Novice">Novice</option>
-        <option value="Beginner">Beginner</option>
-        <option value="Amateur">Amateur</option>
-        <option value="Professional">Professional</option>
-        <option value="Insane">Insane</option>
-      </select>
-      <button id="reset-filters" class="btn btn-secondary">Reset Filters</button>
-    </section>
-    <div id="challenges" class="challenges-container"></div>
-  </main>
-  <div id="flag-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Submit Flag</h2>
-      <form id="flag-form">
-        <input type="text" id="flag-input" placeholder="Enter FLAG{...}" required>
-        <input type="hidden" id="challenge-id">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      <p id="flag-result"></p>
-    </div>
+<body class="min-h-screen p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-8 text-center">CTF Challenges</h1>
+    <div id="challenges" class="space-y-6"></div>
   </div>
-  <footer>
-    <p>&copy; 2025 CTF Platform. Authorized testing only.</p>
-  </footer>
   <script src="js/challenges.js"></script>
   <script src="js/main.js"></script>
 </body>
