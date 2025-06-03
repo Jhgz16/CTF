@@ -40,24 +40,28 @@
         </script><!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CTF Challenges</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background-color: #1f2937;
-      color: #f3f4f6;
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Competition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="min-h-screen p-8">
-  <div class="max-w-4xl mx-auto">
-    <h1 class="text-4xl font-bold mb-8 text-center">CTF Challenges</h1>
-    <div id="challenges" class="space-y-6"></div>
-  </div>
-  <script src="js/challenges.js"></script>
-  <script src="js/main.js"></script>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-4">
+        <h1 class="text-4xl font-bold text-center mb-8 text-cyan-400">CTF Competition</h1>
+        <div id="challenge-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+
+    <!-- Hint Modal -->
+    <div id="hint-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-gray-800 p-6 rounded-lg max-w-lg w-full">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-4">Hint</h2>
+            <p id="hint-content" class="text-gray-300"></p>
+            <button id="close-modal" class="mt-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Close</button>
+        </div>
+    </div>
+
+    <script src="js/challenges.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
